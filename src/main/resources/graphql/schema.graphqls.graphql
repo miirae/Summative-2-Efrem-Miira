@@ -1,0 +1,55 @@
+
+scalar Date
+
+type Publisher {
+    publisherId: Int!
+    name: String!
+    street: String
+    city: String
+    state: String
+    postalCode: String
+    phone: String
+    email: String
+
+}
+
+
+type Author {
+    authorId: Int!
+    lastName: String
+    firstName: String
+    street: String
+    city: String
+    state: String
+    postalCode: String
+    phone: String
+    email: String
+}
+type Book {
+    bookId: Int!
+    isbn: String
+    title: String
+    author: Author
+    publisher: Publisher
+    price: Float
+    publishDate: String
+}
+
+type Motorcycle {
+    id: String!
+    make: String!
+    model: String!
+    year: Int!
+}
+
+type Query {
+    findPublisherById(publisherId: Int): Publisher
+    findAuthorById(authorId: Int): Author
+    findBookById(bookId: Int): Book
+}
+
+type Mutation {
+    addMotorcycle(id:String make:String model:String year:Int): Motorcycle
+    updateMotorcycle(id:String make:String model:String year:Int): Motorcycle
+    deleteMotorcycleById(id:String!): Boolean
+}
