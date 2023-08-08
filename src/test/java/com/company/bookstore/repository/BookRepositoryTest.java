@@ -78,6 +78,26 @@ public class BookRepositoryTest {
     }
 
     @Test
+    public void getBooksByAuthor(){
+        Author author = new Author("Doe", "John", "123 Main St", "Springfield", "IL", "12345", "555-123-4567", "john.doe@example.com");
+        author = authorRepository.save(author);
+
+        Publisher publisher = new Publisher("ABC Publishers", "123 Main St", "Cityville", "CA", "12345", "555-123-4567", "info@abcpublishers.com");
+        publisher = publisherRepository.save(publisher);
+
+        Date now = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String formattedDate = dateFormat.format(now);
+
+        Book data = new Book("978-1234567890", formattedDate , author, "Sample Book", publisher, BigDecimal.valueOf(29.99));
+        Book expected = bookRepository.save(data);
+
+        List<Book> actual = bookRepository.findBooksByAuthor(author);
+
+        assertEquals(1, actual.size());
+    }
+
+    @Test
     public void addBookTest() {
         Author author = new Author("Doe", "John", "123 Main St", "Springfield", "IL", "12345", "555-123-4567", "john.doe@example.com");
         author = authorRepository.save(author);
