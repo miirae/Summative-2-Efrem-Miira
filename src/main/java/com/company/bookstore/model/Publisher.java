@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -21,6 +22,9 @@ public class Publisher implements Serializable {
     private String postalCode;
     private String phone;
     private String email;
+
+    @OneToMany(mappedBy = "publisher", fetch = FetchType.LAZY)
+    private List<Book> books;
 
     // Constructors, getters, and setters
 
@@ -47,6 +51,7 @@ public class Publisher implements Serializable {
         this.phone = phone;
         this.email = email;
     }
+
 
     public Integer getPublisherId() {
         return publisherId;
@@ -110,6 +115,13 @@ public class Publisher implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+    public void setBooks(List<Book> books) {
+        this.books = books;
     }
 
     @Override

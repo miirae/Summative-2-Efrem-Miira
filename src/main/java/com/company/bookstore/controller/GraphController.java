@@ -15,7 +15,9 @@ import org.springframework.stereotype.Controller;
 public class GraphController {
     @Autowired
     BookRepository bookRepository;
+    @Autowired
     AuthorRepository authorRepository;
+    @Autowired
     PublisherRepository publisherRepository;
 
     @QueryMapping

@@ -1,6 +1,4 @@
 
-scalar Date
-
 type Publisher {
     publisherId: Int!
     name: String!
@@ -10,7 +8,7 @@ type Publisher {
     postalCode: String
     phone: String
     email: String
-
+    books:[Book]
 }
 
 
@@ -24,7 +22,9 @@ type Author {
     postalCode: String
     phone: String
     email: String
+    books: [Book]
 }
+
 type Book {
     bookId: Int!
     isbn: String
@@ -35,21 +35,8 @@ type Book {
     publishDate: String
 }
 
-type Motorcycle {
-    id: String!
-    make: String!
-    model: String!
-    year: Int!
-}
-
 type Query {
     findPublisherById(publisherId: Int): Publisher
     findAuthorById(authorId: Int): Author
     findBookById(bookId: Int): Book
-}
-
-type Mutation {
-    addMotorcycle(id:String make:String model:String year:Int): Motorcycle
-    updateMotorcycle(id:String make:String model:String year:Int): Motorcycle
-    deleteMotorcycleById(id:String!): Boolean
 }

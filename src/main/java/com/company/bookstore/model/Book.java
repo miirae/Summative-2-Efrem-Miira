@@ -19,7 +19,7 @@ public class Book implements Serializable {
     private String isbn;
     private String publishDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "author_id")
     private Author author;
 
