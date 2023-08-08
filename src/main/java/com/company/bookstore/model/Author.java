@@ -25,7 +25,7 @@ public class Author implements Serializable {
     private String phone;
     private String email;
 
-    @OneToMany(mappedBy = "author", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "author", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private Set<Book> books;
 
 

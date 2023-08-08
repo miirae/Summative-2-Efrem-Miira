@@ -23,7 +23,7 @@ public class Publisher implements Serializable {
     private String phone;
     private String email;
 
-    @OneToMany(mappedBy = "publisher", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "publisher", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<Book> books;
 
     // Constructors, getters, and setters

@@ -28,6 +28,13 @@ public class PublisherControllerTest {
     private ObjectMapper mapper = new ObjectMapper();
 
     @Test
+    public void getAllPublishers() throws Exception {
+        mockMvc.perform(get("/publishers")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
+    @Test
     public void addPublisherTest() throws Exception {
         Publisher newPublisher = new Publisher(1, "ABC Publishers", "123 Main St", "Cityville", "CA", "12345", "555-123-4567", "info@abcpublishers.com");
 

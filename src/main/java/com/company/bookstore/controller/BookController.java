@@ -1,5 +1,6 @@
 package com.company.bookstore.controller;
 
+import com.company.bookstore.model.Author;
 import com.company.bookstore.model.Book;
 import com.company.bookstore.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,11 @@ public class BookController {
     @GetMapping("/books")
     public List<Book> getAllBooks() {
         return bookRepo.findAll();
+    }
+
+    @GetMapping("/books/author")
+    public List<Book> getAllBooksByAuthorId(@RequestBody Author author){
+        return bookRepo.findBooksByAuthor(author);
     }
 
     @GetMapping("/books/{bookId}")

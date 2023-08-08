@@ -35,6 +35,14 @@ public class BookControllerTest {
     private ObjectMapper mapper = new ObjectMapper();
 
     @Test
+    public void getAllBooksTests() throws Exception {
+        mockMvc.perform(get("/books")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
+
+    @Test
     public void addBookTest() throws Exception {
         Author bookAuthor = new Author(1,"King", "Stephen", "Hollywood", "Los Angeles", "CA", "11100", "111-222-333", "sking@gmail.com");
         Publisher bookPublisher = new Publisher(1, "McGraw-Hill", "Hollywood", "Los Angeles","CA", "11100", "111-222-333", "mcg@gmail.com");
@@ -76,6 +84,19 @@ public class BookControllerTest {
     @Test
     public void getBookByIdTest() throws Exception {
         mockMvc.perform(get("/books/{bookId}", "1")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void getBooksByAuthor() throws Exception {
+        Author bookAuthor = new Author(1,"King", "Stephen", "Hollywood", "Los Angeles", "CA", "11100", "111-222-333", "sking@gmail.com");
+
+        String bookAuthorJson = mapper.writeValueAsString(bookAuthor);
+
+        mockMvc.perform(post("/books/author")
+                        .content(bookAuthorJson)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk());

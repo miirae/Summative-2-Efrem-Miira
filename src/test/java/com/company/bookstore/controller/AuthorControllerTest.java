@@ -31,6 +31,13 @@ public class AuthorControllerTest {
 
 
     @Test
+    public void getAllAuthorsTest() throws Exception {
+        mockMvc.perform(get("/authors")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
+    @Test
     public void addAuthorTest() throws Exception {
         Author newAuthor = new Author(1,"King", "Stephen", "Hollywood", "Los Angeles", "CA", "11100", "111-222-333", "sking@gmail.com");
 
